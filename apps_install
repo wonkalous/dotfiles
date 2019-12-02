@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -e
+
+sudo apt-get install bat terminator
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+set +e

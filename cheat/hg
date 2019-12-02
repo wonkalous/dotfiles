@@ -1,0 +1,8 @@
+# Drop CL's
+hg cls # list all CL's
+hg cls-drop --prune cl/123 # drop local rev and revert on critique
+hg cls-drop --prune change-N # drop local rev and revert on critique
+
+# drop local commit
+hg xl # view all chains
+hg prune abcd123 # drop local commit

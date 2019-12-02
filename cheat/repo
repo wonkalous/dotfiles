@@ -1,0 +1,2 @@
+# run command in all git repos
+repo forall -c git status

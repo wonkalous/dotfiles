@@ -1,0 +1,15 @@
+# SSH acces
+gcert -prodssh -m package-owners
+
+# CN agent MSV
+blaze mpm --mpm_build_arg=--durability=ephemeral //production/node/os/hammurabi/cn_agent:experimental_cn-agent-daemon_pkg
+open 'https://msvbrowse.corp.google.com/packageinfoz?name=experimental/cn-agent-daemon'
+
+# Hammurabi-only pkg
+blaze mpm --mpm_build_arg=--durability=ephemeral //production/node/os/hammurabi/cn_agent:experimental_hammurabi-only_pkg
+open 'https://msvbrowse.corp.google.com/packageinfoz?name=experimental/hammurabi-only' # hammurabi only package
+msv add -replace oqy1 experimental/cn-agent-daemon@1-80a4ca2f_e31f1a8f_667d1486_bc15d1d7_e0c9731f experimental/hammurabi-only@1-cc06d231_171841b3_07ebbba3_cb759876_fa954b94
+
+# island test
+blaze-bin/experimental/users/yisygo/hammurabi/verify_loasless_island --host oqy1 --port 11923
+

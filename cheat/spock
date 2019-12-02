@@ -1,0 +1,16 @@
+# compile
+blaze build -c opt wireless/android/athome/canvas:ccs
+
+# kill old jobs
+borgcfg production/borg/android-athome-pano/pf/ccs_test.borg downall --borguser=android-athome-pano --skip_confirmation --vars=use_local_binary=true,mpm_version=teamfood,test_instance=7
+
+
+# launch normally
+borgcfg production/borg/android-athome-pano/pf/ccs_test.borg up --borguser=android-athome-pano --skip_confirmation --vars=use_local_binary=true,mpm_version=teamfood,test_instance=7
+
+# Enable extra verbosity
+borgcfg production/borg/android-athome-pano/pf/ccs_test.borg up --borguser=android-athome-pano --skip_confirmation \
+'--vars=use_local_binary=true,mpm_version=teamfood,test_instance=7,vmodule="aah_search_service=4,program_entity_search_munin=3,youtube_superroot_search=3"'
+
+# General
+# Make sure to downall then up, otherwise binary is not refreshed.

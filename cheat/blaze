@@ -1,0 +1,2 @@
+# Run tests with vlog: --test_arg="--v=3" --test_arg="--logtostderr"
+blt //wireless/android/athome/voice/availability:availability_aggregator_test --test_arg="--v=3" --test_arg="--logtostderr"

@@ -1,0 +1,23 @@
+# Common Fluff
+*~
+
+# Compiled files
+*.o
+*.so
+*.pyc
+
+# OS Generated files
+.DS_Store
+.DS_Store?
+._*
+.Trashes
+.AppleDouble
+
+# Other things
+.bundle
+.vagrant
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/tasks.xml
+node_modules/
+bower_components/

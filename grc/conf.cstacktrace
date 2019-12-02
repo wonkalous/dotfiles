@@ -1,0 +1,5 @@
+regexp=(Check failure stack trace)
+colours=bright_red
+=======
+regexp=(SIGABRT)
+colours=magenta

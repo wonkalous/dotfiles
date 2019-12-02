@@ -1,0 +1,58 @@
+# To point katniss to test assistant server
+bash /home/build/google3/wireless/android/athome/tools/point_assistant_server.sh --s3_server=test254
+
+# For arm based devices (Sony TV, nVidia Shield, etc)
+blaze build -c opt --config=android_arm --define buildtype=speechie_dev --android_sdk=//third_party/java/android/android_sdk_linux/platforms/stable_system:android_sdk_tools //java/com/google/android/apps/tvsearch:katniss_dev
+
+# For building and installing together:
+blaze mobile-install -c opt --config=android_arm --define buildtype=speechie_dev --android_sdk=//third_party/java/android/android_sdk_linux/platforms/stable_system:android_sdk_tools //java/com/google/android/apps/tvsearch:katniss_dev
+
+# sanity tests
+/google/data/ro/projects/testing/integrate/guitar_oneshot.par     --cluster_name=assistant-server-test --email_to=reviewlog     --detach -w assistant_server_regression_tests -c cl#
+/google/data/ro/projects/testing/integrate/guitar_oneshot.par     --cluster_name=assistant-server-test --email_to=reviewlog     --detach -w assistant_server_regression_tests -c 123456789
+
+# regtest feedback
+blaze test assistant/assistant_server/tools/regression_tests/feedback_regression_test --flaky_test_attempts=1 --test_arg=--server=test254 --test_arg=--unittest_args=FeedbackRegressionTest
+
+# turing test
+blt //assistant/assistant_server/tools/regression_tests/android_tv:cast_regression_test --test_arg=--assistant_server=prod --test_arg=--force_sherlog=true --test_arg=--gunit_filter=AndroidTvCastTest.testShowMeMyPhotosNeedPermissions
+
+# text search queries
+adb shell am broadcast -a android.intent.action.ASSIST --es query \"lion vidoes\" # youtube
+adb shell am broadcast -a android.intent.action.ASSIST --es query \"How far is it to Peet\’s Coffee\" # simple_answer
+
+# voice search
+adb shell am start -a android.intent.action.ASSIST --es query \"Golden State Warriors\" --ei search_type 1
+search_type 1
+
+# open search settings
+adb shell am start android.intent.action.SEARCH_SETTINGS
+adb shell am start -a com.google.assistant.GOOGLE_SETTINGS
+
+# test all robolectric tests
+blta //javatests/com/google/android/apps/tvsearch/... --test_tag_filters=robolectric
+
+# prep deploy on new device
+prep_deploy_katniss
+deploy_katniss
+
+# build katniss
+bbc
+
+# install katniss
+bbik
+
+# clear data
+ck
+
+# kill katniss
+kk
+
+# text input
+key
+
+# enable all logs
+adb shell setprop log.tag.ALL VERBOSE
+
+# open screenshots
+open http://go/hsv

@@ -1,0 +1,2 @@
+# input text to specific device
+adb -s HT7550202768 shell input text "text here"

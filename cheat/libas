@@ -1,0 +1,56 @@
+# e2e deployment
+ele
+
+# Build APK
+bbl
+
+# Install APK
+blm
+
+# start APK
+las
+
+# Debug APK
+dbl
+
+# location of main code
+cd ~/libassist/src/libassistant
+
+# Extract signature.
+/opt/android-studio-with-blaze-stable/jre/bin/keytool -printcert -file <(unzip -pqq blaze-bin/java/com/google/assistant/sdk/libassistant/android/libassistant_dev.apk 'META-INF/CERT.DSA')
+
+# Build android aar
+cheep build libassistant/contrib/internal/android -o android
+
+# build for android
+cheep build -xarm64 -oandroid birdcage
+cheep build -o android -x arm64 -c libassistant -p
+cheep build -o android -x arm64 -c libassistant_platform -p
+
+# build AAR in blaze
+bban //java/com/google/assistant/sdk/libassistant/android:library_dev.aar
+
+# chromium rolls
+python ./src/build/libassistant/compile_all_variants.py
+src/build/buildAssistant.sh -fDebug -tintegration_tests_presubmit -xx64 -olinux -z
+
+# debug apk
+cd blaze-bin/java/com/google/assistant/sdk/libassistant/android
+unzip -l libassistant_dev.apk
+cd libassistant_dev
+tree
+dexdump classes.dex| grep 'Class descriptor'
+
+# maintenance
+repo forall -c git gc --aggressive --prune=now
+git gc --aggressive --prune=now
+
+# stats
+repo forall -c git log --shortstat --author="Ivan Smirnov" --since="22 Sep, 2018" | grep -E "fil(e|es) changed" | awk '{files+=$1; inserted+=$4; deleted+=$6} END {print "files changed: ", files, "lines inserted: ", inserted, "lines deleted: ", deleted }'
+
+# Get class signatures
+cd ~/libassist/src/out_android_arm64/Release/classes
+javap -s -p com.google.assistant.sdk.libassistant.AssistantManagerNative
+
+# run colorized pigeon
+cheep bar -d pigeon $(python ./tools/auth_util.py) 2>&1 | tools/grc/grcat.py tools/grc/libassistant.conf 

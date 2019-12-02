@@ -1,0 +1,24 @@
+# Adhoc command
+ansible your_host -m shell -a 'echo $TERM'
+ansible your_group -i inventory -a "whoami" -s
+
+# reboot fleet
+ansible -m shell -a 'reboot' all
+
+# install package on all machines
+ansible -m shell -a 'DEBIAN_FRONTEND=noninteractive apt install -y mosh' all
+
+# Install role to current dir
+ansible-galaxy install --roles-path . nameof.role
+
+# Install requirements
+ansible-galaxy install -r requirements.yml
+
+# Init new role
+ansible-galaxy init role_name
+
+# Pull variables from setup module
+ansible localhost -m setup | sed 's@localhost | SUCCESS => {@{@g' | jq '.ansible_facts.ansible_default_ipv4'
+
+# Print available keys. Useful for remembering common ansible variables
+ansible localhost -m setup | sed 's@localhost | SUCCESS => {@{@g' | jq '.ansible_facts | keys'

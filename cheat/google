@@ -1,0 +1,2 @@
+# Tricorder
+find javatests/com/google/android/apps/tvsearch/ -type f -name '*.java' | xargs -n 250 tricorder analyze -recurse -fix -timeout 30m -categories JavaStyle,ErrorProne,JavacWarnings,JavaOptionalSuggestions

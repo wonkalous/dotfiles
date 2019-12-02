@@ -1,0 +1,48 @@
+# Configuration for colorizing libassistant logs
+# Note: deletions must come first, in order for colorizer offset to remain sane.
+
+# delete random leading numbers
+regexp=\[[0-9]*:[0-9]*:
+replace=
+=====
+# this is timestamp
+regexp=(\d)(\d)(\d)(\d)\/(\d)(\d)(\d)(\d)(\d)(\d)\.(\d*):
+replace=\1\2/\3\4 \5\6:\7\8:\9\10 
+colours=green,green,green,green,green, bold green, bold green,bold green,bold green,bold green,bold green,bold green, bold green
+count=once
+======
+# logging intensity
+regexp=ERROR
+colours=bold red
+count=once
+=====
+# logging intensity
+regexp=WARNING
+colours=bold red
+count=once
+=====
+# logging intensity
+regexp=INFO
+colours=yellow
+count=once
+=====
+# logging intensity
+regexp=DEBUG
+colours=white
+count=once
+=====
+# File name for log origin
+regexp=\w*\.cc
+colours=bold yellow
+count=once
+=====
+# line numbers in parentheses
+regexp=\([0-9]*\)
+colours=bold blue
+count=once
+======
+# kill closing bracket
+regexp=\]
+replace=
+count=once
+======

@@ -1,0 +1,323 @@
+# Ivan's i3 window manager config file.
+
+# Available modifiers can be seen with 'xmodmap' or 'xev -event keyboard'
+# Mapping:
+#  - mod1: Alt, Meta
+#  - mod4: Super (win key)
+set $mod Mod4
+set $alt Mod1
+
+
+############ Look and Feel  ################################
+# Font for window titles. Will also be used by the bar unless a different font
+font pango: Source Code Pro 10
+
+### custom colors
+set $gold    #ffa000
+set $purple  #7a5ada
+set $red     #d11931
+set $grue    #285577
+set $white   #ffffff
+
+# class                 border   backgr.  text     indicator
+client.focused          #4c7899  $grue    $white   #2e9ef4
+client.focused_inactive #333333  #5f676a  $white   #484e50
+client.unfocused        #333333  #222222  #aaaaaa  #292d2e
+client.urgent           $purple  $red     $gold    $gold
+
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# MOUSE
+# focus_follows_mouse no
+mouse_warping none
+
+
+# resize window
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        set $interval 10
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width $interval px or $interval ppt
+        bindsym k resize grow height $interval px or $interval ppt
+        bindsym l resize shrink height $interval px or $interval ppt
+        bindsym semicolon resize grow width $interval px or $interval ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width $interval px or $interval ppt
+        bindsym Down resize grow height $interval px or $interval ppt
+        bindsym Up resize shrink height $interval px or $interval ppt
+        bindsym Right resize grow width $interval px or $interval ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+
+
+
+
+
+############ Core Commands  ################################
+
+# kill focused window
+bindsym $mod+q kill
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+### change focus:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+# bindsym $mod+Tab exec "rofi -combi-modi Workspace:$HOME/db_bin/i3/i3_switch_workspace.sh -show combi -modi combi"
+
+### move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+### change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+# bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# jump to urgent window
+bindsym $mod+u [urgent=latest] focus
+
+############ Workspace Management  ################################
+workspace_layout stacked
+bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+
+bindsym $mod+Control+a exec i3-input -F 'workspace number "%s"' -P 'switch to number: '
+
+# switch to workspace
+bindsym $mod+1 workspace number 15
+bindsym $mod+2 workspace number 25
+bindsym $mod+3 workspace number 35
+bindsym $mod+4 workspace number 45
+bindsym $mod+5 workspace number 55
+bindsym $mod+6 workspace number 65
+bindsym $mod+7 workspace number 75
+bindsym $mod+8 workspace number 85
+bindsym $mod+9 workspace number 95
+bindsym $mod+0 workspace number 05
+
+bindsym $mod+grave exec $HOME/db_bin/i3/i3_inc_ws.sh
+bindsym $mod+Tab exec $HOME/db_bin/i3/i3_mv_inc_ws.sh
+
+bindsym $mod+Shift+grave exec $HOME/db_bin/i3/i3_dec_ws.sh
+bindsym $mod+Shift+Tab exec $HOME/db_bin/i3/i3_mv_dec_ws.sh
+
+
+bindsym $mod+period exec $HOME/db_bin/i3/i3_promote_ws.sh
+bindsym $mod+comma exec $HOME/db_bin/i3/i3_demote_ws.sh
+
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 15, workspace number 15
+bindsym $mod+Shift+2 move container to workspace number 25, workspace number 25
+bindsym $mod+Shift+3 move container to workspace number 35, workspace number 35
+bindsym $mod+Shift+4 move container to workspace number 45, workspace number 45
+bindsym $mod+Shift+5 move container to workspace number 55, workspace number 55
+bindsym $mod+Shift+6 move container to workspace number 65, workspace number 65
+bindsym $mod+Shift+7 move container to workspace number 75, workspace number 75
+bindsym $mod+Shift+8 move container to workspace number 85, workspace number 85
+bindsym $mod+Shift+9 move container to workspace number 95, workspace number 95
+bindsym $mod+Shift+0 move container to workspace number 05, workspace number 05
+
+
+# save last workspace - can toggle with mod+tab or mod+num_cur_ws 
+workspace_auto_back_and_forth yes
+bindsym $mod+slash workspace back_and_forth
+
+# move current container to previous workspace and follow it
+# bindsym $mod+k move container to workspace back_and_forth; workspace back_and_forth
+
+# moving workspaces across monitors
+bindsym $mod+Shift+d move workspace to output down
+bindsym $mod+Shift+less move workspace to output left
+
+## handle named workspace bindsym $mod+Shift+a exec "~/.dotfiles/i3/scripts/i3-rename"
+bindsym $mod+Shift+s exec "~/.dotfiles/i3/scripts/i3-move"
+
+# Movement through workspaces on a monitor. Bound to keys on layer 1 on ergodox.
+#bindsym $mod+Shift+z workspace prev_on_output
+#bindsym $mod+Shift+x workspace next_on_output
+
+bindsym $mod+Shift+Control+Left workspace prev_on_output
+bindsym $mod+Shift+Control+Right workspace next_on_output
+
+############ Meta Configuration and Modes  ################################
+
+# reload the configuration file
+ bindsym $mod+Shift+c reload
+
+# restart i3 in place (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+#bindsym $mod+Shift+e exec "i3session save; i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
+
+
+### exit menu
+set $mode_system System (l) lock, (e) logout, (r) reboot, (s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id "/usr/share/goobuntu-desktop-files/xsecurelock.sh", mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym r exec --no-startup-id "sudo reboot now", mode "default"
+    bindsym s exec --no-startup-id "sudo shutdown -P now", mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e mode "$mode_system"
+
+
+
+
+############ Status Bar and Run Menu  ################################
+
+# Start i3bar to display a workspace bar
+bar {
+    status_command    SCRIPT_DIR=~/.dotfiles/i3/blocklets i3blocks
+    position          bottom
+    mode              dock
+    workspace_buttons yes
+
+    font pango: Source Code Pro 12
+
+    colors {
+        background #333333
+        statusline #ffd700
+
+        focused_workspace  #ffffff #285577
+        active_workspace   #ffffff #333333
+        inactive_workspace #888888 #222222
+        urgent_workspace   #ffffff #900000
+    }
+}
+
+# scratchpad for music and terminal.
+# Make the currently focused window a scratchpad
+#bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+Shift+plus scratchpad show
+
+# rofi - note, can use Shift+right to cycle through modes
+bindsym $mod+space exec "rofi -combi-modi window,drun,run,Monitors:$HOME/db_bin/rofi/monitors.sh,Workspace:$HOME/db_bin/i3_switch_workspace.sh -show combi -modi combi"
+
+############ Display and Music  ################################
+
+# Screen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Media player controls
+bindsym XF86AudioRaiseVolume "exec amixer -q sset Master 5%+ unmute"
+bindsym XF86AudioLowerVolume "exec amixer -q sset Master 5%- unmute"
+bindsym $mod+XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
+bindsym $mod+XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
+
+bindsym $mod+F10 "exec amixer -q sset Master 5%+ unmute"
+bindsym $mod+F9 "exec amixer -q sset Master 5%- unmute"
+
+# bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle" # UNABLE TO UNMUTE
+bindsym XF86AudioPlay exec cmus-remote -u
+bindsym XF86AudioPause exec cmus-remote -u
+bindsym XF86AudioNext exec cmus-remote -n
+bindsym XF86AudioPrev exec cmus-remote -r
+
+bindsym $mod+Control+4 exec gnome-screenshot -i
+
+############ Apps  ################################
+
+set $filemanager nemo --no-desktop
+set $browser "$HOME/db_bin/ws_chrome.sh"
+set $terminal terminator
+
+# favorite programs
+bindsym $mod+t exec $browser
+bindsym $mod+x exec $filemanager
+bindsym $mod+e exec subl -n
+bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+c exec --no-startup-id "rofi -show calc -modi calc -no-show-match -no-sort"
+
+
+
+# App Bindings
+assign [instance="^crx_nckgahadagoaajjgafhacjanaoiihapd$"] hangouts
+assign [instance="^crx_knipolnnllmklapflnccelgolnpehhpl$"] hangouts
+assign [instance="^crx_clhhggbfdinjmjhajaheehoeibfljjno$"] telegram
+
+for_window [instance="^crx_knipolnnllmklapflnccelgolnpehhpl$"] floating disable
+
+###### startup applications #####
+
+
+# set wallapaper
+exec --no-startup-id feh --bg-fill ~/.dotfiles/pics/ubuntu_blue.jpg
+
+## keybinds
+exec xbindkeys
+# set Microsoft Curve 4000 "Menu" key to "Win" for Mod4
+exec --no-startup-id xmodmap -e 'keycode 135 = Super_R' && xset -r 135
+# Supercharge key repeat rate. http://xahlee.info/linux/linux_set_key_repeat_rate.html
+exec xset r rate 280 40
+
+# music
+for_window [title="^cmus$"] move window to scratchpad
+exec --no-startup-id terminator -T cmus -e cmus
+
+### user apps
+exec $browser
+exec $terminal
+# exec xrandr --output HDMI-1 --above eDP-1
+# bindsym $mod+Shift+M exec xrandr --output eDP-1 --auto
+bindsym $mod+Shift+k exec $HOME/db_bin/chrome_kill.sh
+bindsym $mod+Shift_Control+k exec $HOME/db_bin/chrome_kill_all.sh
+
+exec --no-startup-id nm-applet
+
+
+
+### monitor menu
+set $monitor_options (q) eDp-1 auto (w) both (e) HDMI-1 auto
+mode "$monitor_options" {
+    bindsym q exec xrandr --output eDP-1 --auto
+    bindsym w exec xrandr --output HDMI-1 --auto --above eDP-1
+    bindsym e exec xrandr --output eDP-1 --off --output HDMI-1 --auto
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+M mode "$monitor_options"

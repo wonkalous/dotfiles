@@ -1,0 +1,11 @@
+# List all partitions and devices
+lsblk
+
+# Get partition ID's
+blkid
+
+# list mounts
+findmnt
+
+# macOS
+diskutil list # list all devices, even if unmounted.
