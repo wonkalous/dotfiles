@@ -1,4 +1,4 @@
-# Ivan's i3 window manager config file.
+# Evan's i3 window manager config file.
 
 # Available modifiers can be seen with 'xmodmap' or 'xev -event keyboard'
 # Mapping:
@@ -10,7 +10,7 @@ set $alt Mod1
 
 ############ Look and Feel  ################################
 # Font for window titles. Will also be used by the bar unless a different font
-font pango: Source Code Pro 10
+# font pango: Source Code Pro 10
 
 ### custom colors
 set $gold    #ffa000
@@ -212,7 +212,7 @@ bar {
     mode              dock
     workspace_buttons yes
 
-    font pango: Source Code Pro 12
+    # font pango: Source Code Pro 12
 
     colors {
         background #333333

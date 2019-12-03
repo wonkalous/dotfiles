@@ -29,7 +29,15 @@
     ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings: sublime/Preferences.sublime-settings
     ~/.i3blocks.conf: i3/i3blocks.conf
     ~/db_bin: bin
+    ~/.fonts/Inconsolata-Regular.ttf: fonts/Inconsolata-Regular.ttf
+    ~/.fonts/FontAwesome.otf: fonts/FontAwesome.otf
+    ~/.fonts/SourceCodePro-Regular.ttf: fonts/SourceCodePro-Regular.ttf
+    ~/.fonts/NotoColorEmoji.ttf: fonts/NotoColorEmoji.ttf
+    ~/.config/fontconfig/fonts.conf: fonts/fonts.conf
 
 - shell:
   - [printf "\n" | vim +PlugInstall +PlugUpdate +qall, Installing vim plugins]
+  - ['([ -x "$(command -v fc-cache)" ] && fc-cache -f -v) || echo "no fc-cache command"', "Regenerate font cache."]
+
+
 
