@@ -233,7 +233,7 @@ bar {
 bindsym $mod+Shift+plus scratchpad show
 
 # rofi - note, can use Shift+right to cycle through modes
-bindsym $mod+space exec "rofi -combi-modi window,drun,run,Monitors:$HOME/db_bin/rofi/monitors.sh,Workspace:$HOME/db_bin/i3_switch_workspace.sh -show combi -modi combi"
+bindsym $mod+space exec "rofi -combi-modi window,drun,run,Monitors:$HOME/db_bin/rofi/monitors.sh,Workspace:$HOME/db_bin/i3/i3_switch_workspace.sh -show combi -modi combi"
 
 ############ Display and Music  ################################
 
