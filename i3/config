@@ -175,6 +175,19 @@ bindsym $mod+Shift+Control+Left workspace prev_on_output
 bindsym $mod+Shift+Control+Right workspace next_on_output
 
 bindsym $mod+Control+a [instance="google-chrome \(/home/epenn/temp/c1\)"] move container to workspace number 15; [instance="google-chrome \(/home/epenn/temp/c2\)"] move container to workspace number 25; [instance="google-chrome \(/home/epenn/temp/c3\)"] move container to workspace number 35; [instance="google-chrome \(/home/epenn/temp/c4\)"] move container to workspace number 45; [instance="google-chrome \(/home/epenn/temp/c5\)"] move container to workspace number 55; [instance="google-chrome \(/home/epenn/temp/c6\)"] move container to workspace number 65; [instance="google-chrome \(/home/epenn/temp/c7\)"] move container to workspace number 75; [instance="google-chrome \(/home/epenn/temp/c8\)"] move container to workspace number 85; [instance="google-chrome \(/home/epenn/temp/c9\)"] move container to workspace number 95; [instance="google-chrome \(/home/epenn/temp/c0\)"] move container to workspace number 05; 
+
+for_window [instance="google-chrome \(/home/epenn/temp/c1\)"] move container to workspace number 15 
+for_window [instance="google-chrome \(/home/epenn/temp/c2\)"] move container to workspace number 25
+for_window [instance="google-chrome \(/home/epenn/temp/c3\)"] move container to workspace number 35
+for_window [instance="google-chrome \(/home/epenn/temp/c4\)"] move container to workspace number 45
+for_window [instance="google-chrome \(/home/epenn/temp/c5\)"] move container to workspace number 55
+for_window [instance="google-chrome \(/home/epenn/temp/c6\)"] move container to workspace number 65
+for_window [instance="google-chrome \(/home/epenn/temp/c7\)"] move container to workspace number 75
+for_window [instance="google-chrome \(/home/epenn/temp/c8\)"] move container to workspace number 85
+for_window [instance="google-chrome \(/home/epenn/temp/c9\)"] move container to workspace number 95
+for_window [instance="google-chrome \(/home/epenn/temp/c0\)"] move container to workspace number 05
+
+
 ############ Meta Configuration and Modes  ################################
 
 # reload the configuration file
