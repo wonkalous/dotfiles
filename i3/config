@@ -115,7 +115,7 @@ bindsym $mod+u [urgent=latest] focus
 workspace_layout stacked
 bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
-bindsym $mod+Control+a exec i3-input -F 'workspace number "%s"' -P 'switch to number: '
+#bindsym $mod+Control+a exec i3-input -F 'workspace number "%s"' -P 'switch to number: '
 
 # switch to workspace
 bindsym $mod+1 workspace number 15
@@ -174,17 +174,7 @@ bindsym $mod+Shift+s exec "~/.dotfiles/i3/scripts/i3-move"
 bindsym $mod+Shift+Control+Left workspace prev_on_output
 bindsym $mod+Shift+Control+Right workspace next_on_output
 
-assign [instance="google-chrome \(/home/epenn/temp/c1\)"] 15
-assign [instance="google-chrome \(/home/epenn/temp/c2\)"] 25
-assign [instance="google-chrome \(/home/epenn/temp/c3\)"] 35
-assign [instance="google-chrome \(/home/epenn/temp/c4\)"] 45
-assign [instance="google-chrome \(/home/epenn/temp/c5\)"] 55
-assign [instance="google-chrome \(/home/epenn/temp/c6\)"] 65
-assign [instance="google-chrome \(/home/epenn/temp/c7\)"] 75
-assign [instance="google-chrome \(/home/epenn/temp/c8\)"] 85
-assign [instance="google-chrome \(/home/epenn/temp/c9\)"] 95
-assign [instance="google-chrome \(/home/epenn/temp/c0\)"] 05
-
+bindsym $mod+Control+a [instance="google-chrome \(/home/epenn/temp/c1\)"] move container to workspace number 15; [instance="google-chrome \(/home/epenn/temp/c2\)"] move container to workspace number 25; [instance="google-chrome \(/home/epenn/temp/c3\)"] move container to workspace number 35; [instance="google-chrome \(/home/epenn/temp/c4\)"] move container to workspace number 45; [instance="google-chrome \(/home/epenn/temp/c5\)"] move container to workspace number 55; [instance="google-chrome \(/home/epenn/temp/c6\)"] move container to workspace number 65; [instance="google-chrome \(/home/epenn/temp/c7\)"] move container to workspace number 75; [instance="google-chrome \(/home/epenn/temp/c8\)"] move container to workspace number 85; [instance="google-chrome \(/home/epenn/temp/c9\)"] move container to workspace number 95; [instance="google-chrome \(/home/epenn/temp/c0\)"] move container to workspace number 05; 
 ############ Meta Configuration and Modes  ################################
 
 # reload the configuration file
@@ -244,7 +234,7 @@ bar {
 bindsym $mod+Shift+plus scratchpad show
 
 # rofi - note, can use Shift+right to cycle through modes
-bindsym $mod+space exec "rofi -combi-modi window,drun,run,Monitors:$HOME/db_bin/rofi/monitors.sh,Workspace:$HOME/db_bin/i3/i3_switch_workspace.sh -show combi -modi combi"
+bindsym $mod+space exec "rofi -combi-modi drun,window -show combi -modi combi"
 
 ############ Display and Music  ################################
 
