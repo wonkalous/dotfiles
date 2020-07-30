@@ -1,5 +1,6 @@
 import subprocess
 import json
+import sys
 import re
 
 
@@ -53,7 +54,7 @@ def place_wins(wins):
         cmd_ = cmd.format(title=ascii_only(re.escape(t), r='.'), ws=n)
         print("i3-msg '"+cmd_+"'")
 
-        raw_input()
+        # raw_input()
         try:
             subprocess.check_output([
                 "i3-msg",
@@ -62,6 +63,16 @@ def place_wins(wins):
         except Exception as e:# [subprocess.CalledProcessError, UnicodeEncodeError]:
             print("ERROR: ", t, n)
             print(e)
+
+if __name__ == '__main__':
+    if sys.argv[1] == 'save':
+        wins = get_wins()
+        with open(sys.argv[2], 'w+') as out:
+            json.dump(wins, out)
+    elif sys.argv[1] == 'load':
+        with open(sys.argv[2], 'r') as wins_file:
+            wins = json.load(wins_file)
+        place_wins(wins)
 
 
 #"[title=\"1966 - Google Chrome\"] move window to workspace number 13"
