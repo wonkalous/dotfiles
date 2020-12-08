@@ -14,7 +14,7 @@ sudo apt install zsh curl rofi i3blocks vim emacs nano terminator wget
 sudo ./install_sublime.sh
 sudo ./install_chrome.sh
 sudo chsh -s $(which zsh)
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 git submodule update --init --recursive "${DOTBOT_DIR}"
 mkdir ~/code
 mkdir ~/data
@@ -22,5 +22,5 @@ mkdir ~/envs
 mkdir ~/temp
 # base lib
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "default${CONFIG_SUFFIX}"
-
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 set +e
