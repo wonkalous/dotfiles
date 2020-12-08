@@ -9,5 +9,6 @@ else
 	echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 	sudo apt-get update
 	sudo apt-get install sublime-text
-	wget -P https://packagecontrol.io/Package%20Control.sublime-package ~/.config/sublime-text-3/Installed Packages
+	mkdir -p  ~/.config/sublime-text-3
+	wget -P ~/.config/sublime-text-3/Installed\ Packages https://packagecontrol.io/Package%20Control.sublime-package
 fi
