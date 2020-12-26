@@ -12,6 +12,16 @@ set $alt Mod1
 # Font for window titles. Will also be used by the bar unless a different font
 font pango: Source Code Pro 10
 
+# https://paletton.com/#uid=32p0P0klsnubvzPgWscpzjtuPe3
+for_window [class="(?i)chrome"] title_format "<span foreground='#1d7506'>%title</span>"
+for_window [class="(?i)sublime"] title_format "<tt><span foreground='#6934bf'>%title</span></tt>"
+for_window [class="(?i)terminator"] title_format "<span foreground='#b08921'>%title</span>"
+
+# focused
+#for_window [class="(?i)chrome"] title_format "<span foreground='#65901d'>%title</span>"
+#for_window [class="(?i)sublime"] title_format "<tt><span foreground='#65901d'>%title</span></tt>"
+# for_window [class="(?i)terminator"] title_format "<span foreground='#65901d'>%title</span>"
+
 ### custom colors
 set $gold    #ffa000
 set $purple  #7a5ada
@@ -20,7 +30,7 @@ set $grue    #285577
 set $white   #ffffff
 
 # class                 border   backgr.  text     indicator
-client.focused          #4c7899  $grue    $white   #2e9ef4
+client.focused          #4c7899  #7e7c80    $white   #2e9ef4
 client.focused_inactive #333333  #5f676a  $white   #484e50
 client.unfocused        #333333  #222222  #aaaaaa  #292d2e
 client.urgent           $purple  $red     $gold    $gold

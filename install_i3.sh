@@ -8,7 +8,7 @@ if grep -q sur5r /etc/apt/sources.list.d/sur5r-i3.list; then
 else
 	sudo echo "deb https://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" >> /etc/apt/sources.list.d/sur5r-i3.list
 fi
-sudo apt update
-sudo apt install i3
+sudo apt -y update
+sudo apt -y install i3
 
 
