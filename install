@@ -10,7 +10,7 @@ BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "${BASEDIR}"
 sudo ./install_i3.sh
-sudo apt -y install zsh curl rofi i3blocks vim emacs nano terminator wget 
+sudo apt -y install zsh curl rofi i3blocks vim emacs nano terminator wget nemo
 sudo ./install_sublime.sh
 sudo ./install_chrome.sh
 sudo chsh -s $(which zsh)
