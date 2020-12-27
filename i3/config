@@ -13,9 +13,9 @@ set $alt Mod1
 font pango: Source Code Pro 10
 
 # https://paletton.com/#uid=32p0P0klsnubvzPgWscpzjtuPe3
-for_window [class="(?i)chrome"] title_format "<span foreground='#1d7506'>%title</span>"
+for_window [class="(?i)chrome"] title_format "<tt><span foreground='#1d7506'>%title</span></tt>"
 for_window [class="(?i)sublime"] title_format "<tt><span foreground='#6934bf'>%title</span></tt>"
-for_window [class="(?i)terminator"] title_format "<span foreground='#b08921'>%title</span>"
+for_window [class="(?i)termina"] title_format "<span foreground='#b08921'>%title</span>"
 
 # focused
 #for_window [class="(?i)chrome"] title_format "<span foreground='#65901d'>%title</span>"
@@ -190,7 +190,7 @@ bindsym $mod+Shift+s exec "~/.dotfiles/i3/scripts/i3-move"
 bindsym $mod+Shift+Control+Left workspace prev_on_output
 bindsym $mod+Shift+Control+Right workspace next_on_output
 
-bindsym $mod+Control+a [instance="google-chrome \(/home/epenn/temp/c1\)"] move container to workspace number 15; [instance="google-chrome \(/home/epenn/temp/c2\)"] move container to workspace number 25; [instance="google-chrome \(/home/epenn/temp/c3\)"] move container to workspace number 35; [instance="google-chrome \(/home/epenn/temp/c4\)"] move container to workspace number 45; [instance="google-chrome \(/home/epenn/temp/c5\)"] move container to workspace number 55; [instance="google-chrome \(/home/epenn/temp/c6\)"] move container to workspace number 65; [instance="google-chrome \(/home/epenn/temp/c7\)"] move container to workspace number 75; [instance="google-chrome \(/home/epenn/temp/c8\)"] move container to workspace number 85; [instance="google-chrome \(/home/epenn/temp/c9\)"] move container to workspace number 95; [instance="google-chrome \(/home/epenn/temp/c0\)"] move container to workspace number 05; 
+bindsym $mod+Control+a [instance="google-chrome \($HOME/temp/c1\)"] move container to workspace number 15; [instance="google-chrome \($HOME/temp/c2\)"] move container to workspace number 25; [instance="google-chrome \($HOME/temp/c3\)"] move container to workspace number 35; [instance="google-chrome \($HOME/temp/c4\)"] move container to workspace number 45; [instance="google-chrome \($HOME/temp/c5\)"] move container to workspace number 55; [instance="google-chrome \($HOME/temp/c6\)"] move container to workspace number 65; [instance="google-chrome \($HOME/temp/c7\)"] move container to workspace number 75; [instance="google-chrome \($HOME/temp/c8\)"] move container to workspace number 85; [instance="google-chrome \($HOME/temp/c9\)"] move container to workspace number 95; [instance="google-chrome \($HOME/temp/c0\)"] move container to workspace number 05; 
 
 
 
@@ -317,8 +317,8 @@ for_window [title="^cmus$"] move window to scratchpad
 exec --no-startup-id terminator -T cmus -e cmus
 
 ### user apps
-exec $browser
-exec $terminal
+# exec $browser
+# exec $terminal
 # exec xrandr --output HDMI-1 --above eDP-1
 # bindsym $mod+Shift+M exec xrandr --output eDP-1 --auto
 bindsym $mod+Shift+k exec $HOME/db_bin/chrome_kill.sh

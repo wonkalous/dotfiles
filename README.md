@@ -1,5 +1,5 @@
 # Evan's Dotfiles
-
+clone and then run ./install.  Do not use sudo ./install, as this changes the meaning of '\~'.
 
 
 

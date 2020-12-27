@@ -5,7 +5,15 @@
 	],
 	"installed_packages":
 	[
+		"BracketHighlighter",
+		"Color Scheme - Spectral",
+		"Diffy",
 		"Package Control",
-		"Rainglow"
+		"Pretty JSON",
+		"Protobuf Syntax Hightlighting",
+		"Rainglow",
+		"Select Multi Lines",
+		"Text Marker",
+		"Theme - Gravity"
 	]
 }
