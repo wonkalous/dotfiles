@@ -9,7 +9,7 @@
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
   - [mkdir -p ~/.vim/temp_dirs/undodir, Crating vim undo dir]
-  - [bat cache --build, Updating bat syntax cache]
+  - [batcat cache --build, Updating bat syntax cache]
   - [mkdir -p $HOME/temp/c0 $HOME/temp/c1 $HOME/temp/c2 $HOME/temp/c3 $HOME/temp/c4]
   - [mkdir -p $HOME/temp/c5 $HOME/temp/c6 $HOME/temp/c7 $HOME/temp/c8 $HOME/temp/c9]
 
