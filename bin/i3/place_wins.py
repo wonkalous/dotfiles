@@ -1,5 +1,6 @@
 import subprocess
 import json
+import time
 import sys
 import re
 
@@ -67,7 +68,11 @@ def place_wins(wins):
 if __name__ == '__main__':
     if sys.argv[1] == 'save':
         wins = get_wins()
-        with open(sys.argv[2], 'w+') as out:
+        if len(sys.argv) > 2:
+            filename = sys.argv[2] 
+        else:
+            filename = "wins_{}".format(int(time.time()))
+        with open(filename, 'w+') as out:
             json.dump(wins, out)
     elif sys.argv[1] == 'load':
         with open(sys.argv[2], 'r') as wins_file:
