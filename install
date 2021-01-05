@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+# set -e
 
 CONFIG_SUFFIX=".conf.yaml"
 DOTBOT_DIR="dotbot"
@@ -7,10 +7,23 @@ DOTBOT_DIR="dotbot"
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-cd "${BASEDIR}"
-git submodule update --init --recursive "${DOTBOT_DIR}"
 
+cd "${BASEDIR}"
+sudo ./install_i3.sh
+sudo apt -y install zsh curl rofi i3blocks vim emacs nano terminator wget nemo bat jq
+sudo ./install_sublime.sh
+sudo ./install_clipmenu.sh
+sudo ./install_rofi-calc.sh
+sudo ./install_chrome.sh
+sudo chsh -s $(which zsh)
+
+git submodule update --init --recursive "${DOTBOT_DIR}"
+mkdir -p ~/code
+git clone git@github.com:so-fancy/diff-so-fancy.git ~/code/diff-so-fancy
+mkdir -p ~/data
+mkdir -p ~/envs
+mkdir -p ~/temp
 # base lib
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "default${CONFIG_SUFFIX}"
-
-set +e
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# set +e

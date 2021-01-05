@@ -1,0 +1,19 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"BracketHighlighter",
+		"Color Scheme - Spectral",
+		"Diffy",
+		"Package Control",
+		"Pretty JSON",
+		"Protobuf Syntax Hightlighting",
+		"Rainglow",
+		"Select Multi Lines",
+		"Text Marker",
+		"Theme - Gravity"
+	]
+}

@@ -12,6 +12,24 @@ set $alt Mod1
 # Font for window titles. Will also be used by the bar unless a different font
 font pango: Source Code Pro 10
 
+# https://paletton.com/#uid=32p0P0klsnubvzPgWscpzjtuPe3
+for_window [class="(?i)chrome"] title_format "<tt><span foreground='#0d6506'>%title</span></tt>"
+for_window [class="(?i)sublime"] title_format "<tt><span foreground='#5924af'>%title</span></tt>"
+for_window [class="(?i)termina"] title_format "<span foreground='#c09931'>%title</span>"
+
+
+for_window [title="(?i)HBO max"] title_format "<span foreground='#3f65c2'>%title</span>"
+for_window [title="(?i)netflix"] title_format "<span foreground='#3f65c2'>%title</span>"
+for_window [title="(?i)youtube"] title_format "<span foreground='#3f65c2'>%title</span>"
+for_window [title="(?i)prime video"] title_format "<span foreground='#3f65c2'>%title</span>"
+
+for_window [title="(?i)- gmail -"] title_format "<span foreground='#87234e'>%title</span>"
+
+# focused
+#for_window [class="(?i)chrome"] title_format "<span foreground='#65901d'>%title</span>"
+#for_window [class="(?i)sublime"] title_format "<tt><span foreground='#65901d'>%title</span></tt>"
+# for_window [class="(?i)terminator"] title_format "<span foreground='#65901d'>%title</span>"
+
 ### custom colors
 set $gold    #ffa000
 set $purple  #7a5adac0
@@ -20,8 +38,8 @@ set $grue    #285577
 set $white   #ffffff
 
 # class                 border   backgr.  text     indicator
-client.focused          #4c7899  $grue    $white   #2e9ef4
-client.focused_inactive #333333  #5f676a  $white   #484e50
+client.focused          #4c7899  #7e7c80    $white   #2e9ef4
+client.focused_inactive #333333  #2f373a  $white   #484e50
 client.unfocused        #333333  #222222  #aaaaaa  #292d2e
 client.urgent           $purple  $red     $gold    $gold
 
@@ -180,7 +198,7 @@ bindsym $mod+Shift+s exec "~/.dotfiles/i3/scripts/i3-move"
 bindsym $mod+Shift+Control+Left workspace prev_on_output
 bindsym $mod+Shift+Control+Right workspace next_on_output
 
-bindsym $mod+Control+a [instance="google-chrome \(/home/epenn/temp/c1\)"] move container to workspace number 15; [instance="google-chrome \(/home/epenn/temp/c2\)"] move container to workspace number 25; [instance="google-chrome \(/home/epenn/temp/c3\)"] move container to workspace number 35; [instance="google-chrome \(/home/epenn/temp/c4\)"] move container to workspace number 45; [instance="google-chrome \(/home/epenn/temp/c5\)"] move container to workspace number 55; [instance="google-chrome \(/home/epenn/temp/c6\)"] move container to workspace number 65; [instance="google-chrome \(/home/epenn/temp/c7\)"] move container to workspace number 75; [instance="google-chrome \(/home/epenn/temp/c8\)"] move container to workspace number 85; [instance="google-chrome \(/home/epenn/temp/c9\)"] move container to workspace number 95; [instance="google-chrome \(/home/epenn/temp/c0\)"] move container to workspace number 05; 
+bindsym $mod+Control+a [instance="google-chrome \($HOME/temp/c1\)"] move container to workspace number 15; [instance="google-chrome \($HOME/temp/c2\)"] move container to workspace number 25; [instance="google-chrome \($HOME/temp/c3\)"] move container to workspace number 35; [instance="google-chrome \($HOME/temp/c4\)"] move container to workspace number 45; [instance="google-chrome \($HOME/temp/c5\)"] move container to workspace number 55; [instance="google-chrome \($HOME/temp/c6\)"] move container to workspace number 65; [instance="google-chrome \($HOME/temp/c7\)"] move container to workspace number 75; [instance="google-chrome \($HOME/temp/c8\)"] move container to workspace number 85; [instance="google-chrome \($HOME/temp/c9\)"] move container to workspace number 95; [instance="google-chrome \($HOME/temp/c0\)"] move container to workspace number 05; 
 
 
 
@@ -208,7 +226,7 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Shift+e mode "$mode_system"
+bindsym $mod+Control+Shift+e mode "$mode_system"
 
 
 
@@ -248,8 +266,8 @@ bindsym $mod+space exec "rofi -combi-modi drun,window -show combi -modi combi"
 ############ Display and Music  ################################
 
 # Screen brightness controls
-#bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-#bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 bindsym $mod+F6 exec xbacklight -inc 20 # increase screen brightness
 bindsym $mod+F5 exec xbacklight -dec 20 # decrease screen brightness
 ##### echo 1060 | sudo tee /sys/class/backlight/intel_backlight/brightness
@@ -284,7 +302,13 @@ set $terminal terminator
 bindsym $mod+t exec $browser
 bindsym $mod+x exec $filemanager
 bindsym $mod+e exec subl -n
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec $terminal
+
+bindsym $mod+shift+t focus right, exec $browser
+bindsym $mod+shift+x focus right, exec $filemanager
+bindsym $mod+shift+e focus right, exec subl -n
+bindsym $mod+shift+Return focus right, exec $terminal
+
 bindsym $mod+c exec --no-startup-id "rofi -show calc -modi calc -no-show-match -no-sort"
 
 
@@ -293,7 +317,7 @@ bindsym $mod+c exec --no-startup-id "rofi -show calc -modi calc -no-show-match -
 
 
 # set wallapaper
-exec --no-startup-id feh --bg-fill ~/.dotfiles/pics/ubuntu_blue.jpg
+#exec --no-startup-id feh --bg-fill ~/.dotfiles/pics/ubuntu_blue.jpg
 
 ## keybinds
 exec xbindkeys
@@ -307,14 +331,17 @@ for_window [title="^cmus$"] move window to scratchpad
 exec --no-startup-id terminator -T cmus -e cmus
 
 ### user apps
-# exec $browser
-exec $terminal
 # exec xrandr --output HDMI-1 --above eDP-1
 # bindsym $mod+Shift+M exec xrandr --output eDP-1 --auto
 bindsym $mod+Shift+k exec $HOME/db_bin/chrome_kill.sh
 bindsym $mod+Shift_Control+k exec $HOME/db_bin/chrome_kill_all.sh
 
 exec --no-startup-id nm-applet
+# Start clipmenu daemon
+exec --no-startup-id clipmenud
+
+# shortcut to selection widget (primary)
+bindsym $mod+Control+v exec clipmenu
 
 
 

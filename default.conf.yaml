@@ -9,7 +9,7 @@
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
   - [mkdir -p ~/.vim/temp_dirs/undodir, Crating vim undo dir]
-  - [bat cache --build, Updating bat syntax cache]
+  - [batcat cache --build, Updating bat syntax cache]
   - [mkdir -p $HOME/temp/c0 $HOME/temp/c1 $HOME/temp/c2 $HOME/temp/c3 $HOME/temp/c4]
   - [mkdir -p $HOME/temp/c5 $HOME/temp/c6 $HOME/temp/c7 $HOME/temp/c8 $HOME/temp/c9]
 
@@ -27,7 +27,9 @@
     ~/.config/terminator/config: terminator/config
     ~/.config/i3/config: i3/config
     ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings: sublime/Preferences.sublime-settings
+    ~/.config/sublime-text-3/Packages/User/Package Control.sublime-settings: sublime/Package Control.sublime-settings
     ~/.i3blocks.conf: i3/i3blocks.conf
+    ~/.dotfiles/i3/blocklets: i3/blocklets
     ~/db_bin: bin
     ~/.fonts/Inconsolata-Regular.ttf: fonts/Inconsolata-Regular.ttf
     ~/.fonts/FontAwesome.otf: fonts/FontAwesome.otf
