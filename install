@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 # set -e
 
-CONFIG_SUFFIX=".conf.yaml"
 DOTBOT_DIR="dotbot"
-
-DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
 
 cd "${BASEDIR}"
 sudo ./install_i3.sh
@@ -24,6 +20,6 @@ mkdir -p ~/data
 mkdir -p ~/envs
 mkdir -p ~/temp
 # base lib
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "default${CONFIG_SUFFIX}"
+./run_dotbot.sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # set +e

@@ -1,5 +1,5 @@
 # Evan's i3 window manager config file.
-
+### TODO add color change shortcuts for title bars and desktop squares
 # Available modifiers can be seen with 'xmodmap' or 'xev -event keyboard'
 # Mapping:
 #  - mod1: Alt, Meta
@@ -14,7 +14,10 @@ font pango: Source Code Pro 10
 
 # https://paletton.com/#uid=32p0P0klsnubvzPgWscpzjtuPe3
 for_window [class="(?i)chrome"] title_format "<tt><span foreground='#0d6506'>%title</span></tt>"
+
 for_window [class="(?i)sublime"] title_format "<tt><span foreground='#5924af'>%title</span></tt>"
+for_window [title="(?i) - Cider - "] title_format "<tt><span foreground='#5924af'>%title</span></tt>"
+
 for_window [class="(?i)termina"] title_format "<span foreground='#c09931'>%title</span>"
 
 
@@ -32,7 +35,7 @@ for_window [title="(?i)gmail - "] title_format "<span foreground='#87234e'>%titl
 
 ### custom colors
 set $gold    #ffa000
-set $purple  #7a5ada
+set $purple  #7a5adac0
 set $red     #d11931
 set $grue    #285577
 set $white   #ffffff
@@ -242,7 +245,7 @@ bindsym $mod+Control+Shift+e mode "$mode_system"
 
 # Start i3bar to display a workspace bar
 bar {
-    status_command    SCRIPT_DIR=~/.dotfiles/i3/blocklets i3blocks
+    status_command    SCRIPT_DIR=~/.config/i3/blocklets i3blocks
     position          bottom
     mode              dock
     workspace_buttons yes
@@ -340,8 +343,6 @@ for_window [title="^cmus$"] move window to scratchpad
 exec --no-startup-id terminator -T cmus -e cmus
 
 ### user apps
-# exec $browser
-# exec $terminal
 # exec xrandr --output HDMI-1 --above eDP-1
 # bindsym $mod+Shift+M exec xrandr --output eDP-1 --auto
 bindsym $mod+Shift+k exec $HOME/db_bin/chrome_kill.sh
@@ -352,9 +353,8 @@ exec --no-startup-id nm-applet
 exec --no-startup-id clipmenud
 
 # shortcut to selection widget (primary)
-bindsym $mod+Control+v exec clipmenu
-
-
+bindsym $mod+Control+v exec clipmenu && xdotool key Ctrl+v
+#bindsym $mod+Control+alt+v exec clipmenu || xdotool key Down Return Ctrl+v
 
 ### monitor menu
 set $monitor_options (q) eDp-1 auto (w) both (e) HDMI-1 auto
