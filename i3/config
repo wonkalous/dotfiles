@@ -23,7 +23,7 @@ for_window [title="(?i)netflix"] title_format "<span foreground='#3f65c2'>%title
 for_window [title="(?i)youtube"] title_format "<span foreground='#3f65c2'>%title</span>"
 for_window [title="(?i)prime video"] title_format "<span foreground='#3f65c2'>%title</span>"
 
-for_window [title="(?i)- gmail -"] title_format "<span foreground='#87234e'>%title</span>"
+for_window [title="(?i)gmail - "] title_format "<span foreground='#87234e'>%title</span>"
 
 # focused
 #for_window [class="(?i)chrome"] title_format "<span foreground='#65901d'>%title</span>"
@@ -46,6 +46,13 @@ client.urgent           $purple  $red     $gold    $gold
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
 
 # MOUSE
 # focus_follows_mouse no
@@ -318,6 +325,8 @@ bindsym $mod+c exec --no-startup-id "rofi -show calc -modi calc -no-show-match -
 
 # set wallapaper
 #exec --no-startup-id feh --bg-fill ~/.dotfiles/pics/ubuntu_blue.jpg
+exec --no-startup-id ssh-agent -s
+
 
 ## keybinds
 exec xbindkeys
@@ -359,3 +368,21 @@ mode "$monitor_options" {
     bindsym Escape mode "default"
 }
 bindsym $mod+Shift+M mode "$monitor_options"
+
+mode "eDP-1 BRIGHTNESS" {
+    bindsym grave exec xrandr --output eDP-1 --brightness 0.0
+    bindsym 1 exec xrandr --output eDP-1 --brightness 0.1
+    bindsym 2 exec xrandr --output eDP-1 --brightness 0.2
+    bindsym 3 exec xrandr --output eDP-1 --brightness 0.3
+    bindsym 4 exec xrandr --output eDP-1 --brightness 0.4
+    bindsym 5 exec xrandr --output eDP-1 --brightness 0.5
+    bindsym 6 exec xrandr --output eDP-1 --brightness 0.6
+    bindsym 7 exec xrandr --output eDP-1 --brightness 0.7
+    bindsym 8 exec xrandr --output eDP-1 --brightness 0.8
+    bindsym 9 exec xrandr --output eDP-1 --brightness 0.9
+    bindsym 0 exec xrandr --output eDP-1 --brightness 1.0
+
+    bindsym Escape mode "default"
+    bindsym $mod+B mode "default"
+}
+bindsym $mod+B mode "eDP-1 BRIGHTNESS"
