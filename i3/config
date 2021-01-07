@@ -369,6 +369,8 @@ mode "$monitor_options" {
 }
 bindsym $mod+Shift+M mode "$monitor_options"
 
+
+#TODO make one mode that detects current monitor
 mode "eDP-1 BRIGHTNESS" {
     bindsym grave exec xrandr --output eDP-1 --brightness 0.0
     bindsym 1 exec xrandr --output eDP-1 --brightness 0.1
@@ -386,3 +388,21 @@ mode "eDP-1 BRIGHTNESS" {
     bindsym $mod+B mode "default"
 }
 bindsym $mod+B mode "eDP-1 BRIGHTNESS"
+
+mode "HDMI-1 BRIGHTNESS" {
+    bindsym grave exec xrandr --output HDMI-1 --brightness 0.0
+    bindsym 1 exec xrandr --output HDMI-1 --brightness 0.1
+    bindsym 2 exec xrandr --output HDMI-1 --brightness 0.2
+    bindsym 3 exec xrandr --output HDMI-1 --brightness 0.3
+    bindsym 4 exec xrandr --output HDMI-1 --brightness 0.4
+    bindsym 5 exec xrandr --output HDMI-1 --brightness 0.5
+    bindsym 6 exec xrandr --output HDMI-1 --brightness 0.6
+    bindsym 7 exec xrandr --output HDMI-1 --brightness 0.7
+    bindsym 8 exec xrandr --output HDMI-1 --brightness 0.8
+    bindsym 9 exec xrandr --output HDMI-1 --brightness 0.9
+    bindsym 0 exec xrandr --output HDMI-1 --brightness 1.0
+
+    bindsym Escape mode "default"
+    bindsym $mod+B mode "default"
+}
+bindsym $mod+shift+B mode "HDMI-1 BRIGHTNESS"
