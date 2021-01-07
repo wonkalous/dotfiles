@@ -14,7 +14,10 @@ font pango: Source Code Pro 10
 
 # https://paletton.com/#uid=32p0P0klsnubvzPgWscpzjtuPe3
 for_window [class="(?i)chrome"] title_format "<tt><span foreground='#0d6506'>%title</span></tt>"
+
 for_window [class="(?i)sublime"] title_format "<tt><span foreground='#5924af'>%title</span></tt>"
+for_window [title="(?i) - Cider - "] title_format "<tt><span foreground='#5924af'>%title</span></tt>"
+
 for_window [class="(?i)termina"] title_format "<span foreground='#c09931'>%title</span>"
 
 
@@ -235,7 +238,7 @@ bindsym $mod+Control+Shift+e mode "$mode_system"
 
 # Start i3bar to display a workspace bar
 bar {
-    status_command    SCRIPT_DIR=~/.dotfiles/i3/blocklets i3blocks
+    status_command    SCRIPT_DIR=~/.config/i3/blocklets i3blocks
     position          bottom
     mode              dock
     workspace_buttons yes
@@ -341,9 +344,8 @@ exec --no-startup-id nm-applet
 exec --no-startup-id clipmenud
 
 # shortcut to selection widget (primary)
-bindsym $mod+Control+v exec clipmenu
-
-
+bindsym $mod+Control+v exec clipmenu && xdotool key Ctrl+v
+#bindsym $mod+Control+alt+v exec clipmenu || xdotool key Down Return Ctrl+v
 
 ### monitor menu
 set $monitor_options (q) eDp-1 auto (w) both (e) HDMI-1 auto

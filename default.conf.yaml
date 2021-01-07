@@ -19,6 +19,7 @@
     ~/.gitconfig: git/config
     ~/.grc: grc
     ~/.nanorc: nano/nanorc
+    ~/.config/rofi/config: rofi/config
     ~/.toprc : top/toprc
     ~/.vim/autoload: vim/autoload
     ~/.vim/templates: vim/templates
@@ -29,7 +30,7 @@
     ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings: sublime/Preferences.sublime-settings
     ~/.config/sublime-text-3/Packages/User/Package Control.sublime-settings: sublime/Package Control.sublime-settings
     ~/.i3blocks.conf: i3/i3blocks.conf
-    ~/.dotfiles/i3/blocklets: i3/blocklets
+    ~/.config/i3/blocklets: i3/blocklets
     ~/db_bin: bin
     ~/.fonts/Inconsolata-Regular.ttf: fonts/Inconsolata-Regular.ttf
     ~/.fonts/FontAwesome.otf: fonts/FontAwesome.otf
