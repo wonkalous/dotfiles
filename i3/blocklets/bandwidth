@@ -25,12 +25,14 @@ URGENT_VALUE="${OHD_MB}"
 
 PREV_IN=0
 PREV_OUT=0
+PREV_EPOCH=0
 
 PREV_FILE="/tmp/.bandwidth"
 
 if [[ -f "${PREV_FILE}" ]]; then
   PREV_CONT=$(cat "${PREV_FILE}")
   PREV_IN=$(echo "${PREV_CONT}" | head -n 1)
+  PREV_EPOCH=$(echo "${PREV_CONT}" | head -n 2 | tail -n 1)
   PREV_OUT=$(echo "${PREV_CONT}" | tail -n 1)
 fi
 
@@ -42,6 +44,7 @@ fi
 
 BYTES_IN=$(echo "${BANDWIDTH}" | awk -F ' ' '{print $1}')
 BYTES_OUT=$(echo "${BANDWIDTH}" | awk -F ' ' '{print $2}')
+EPOCH=$(date +%s)
 
 function FormatNumber() {
   if [[ "${1}" -ge "${OHD_MB}" ]]; then
@@ -59,15 +62,16 @@ function FormatNumber() {
 
 if [[ "${PREV_IN}" != "" ]] && [[ "${PREV_OUT}" != "" ]]; then
   # Calculate the CPU usage since we last checked.
-  DIFF_IN=$(echo "scale=0;${BYTES_IN} - ${PREV_IN}" | bc -l)
-  DIFF_OUT=$(echo "scale=0;${BYTES_OUT} - ${PREV_OUT}" | bc -l)
+  DT=$((${EPOCH} - ${PREV_EPOCH}))
+  DIFF_IN=$(echo "scale=0;(${BYTES_IN} - ${PREV_IN}) / (${EPOCH} - ${PREV_EPOCH})" | bc -l)
+  DIFF_OUT=$(echo "scale=0;(${BYTES_OUT} - ${PREV_OUT}) / (${EPOCH} - ${PREV_EPOCH})" | bc -l)
   DIFF_TOTAL=0
 
   USAGE_IN=$(FormatNumber "${DIFF_IN}")
   USAGE_OUT=$(FormatNumber "${DIFF_OUT}")
 
   if [[ "${DISPLAY}" = "both" ]]; then
-    echo "${USAGE_IN} : ${USAGE_OUT}"
+    echo "${USAGE_IN} D  ${USAGE_OUT} U"
     echo "${USAGE_IN} : ${USAGE_OUT}"
     echo ""
     DIFF_TOTAL=$((DIFF_TOTAL+DIFF_IN))
@@ -91,6 +95,7 @@ fi
 
 # Remember the total and idle CPU times for the next check.
 echo "${BYTES_IN}" > "${PREV_FILE}"
+echo  "${EPOCH}" >> "${PREV_FILE}"
 echo "${BYTES_OUT}" >> "${PREV_FILE}"
 
 if [[ "${DIFF_TOTAL}" -ge "${URGENT_VALUE}" ]]; then

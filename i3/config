@@ -305,7 +305,7 @@ bindsym $mod+Control+Shift+e mode "$mode_system"
 
 ############ Status Bar and Run Menu  ################################
 
-# Start i3bar to display a workspace bar
+## Start i3bar to display a workspace bar
 bar {
     status_command    SCRIPT_DIR=~/.config/i3/blocklets i3blocks
     position          bottom
@@ -315,10 +315,8 @@ bar {
     font pango: Source Code Pro 12
 
     colors {
-        background #333333
-        statusline #ffd700
-
-        focused_workspace  #ffffff #285577
+        statusline #aaaaaa
+        focused_workspace  #ffffff #333333
         active_workspace   #ffffff #333333
         inactive_workspace #888888 #222222
         urgent_workspace   #ffffff #900000
@@ -370,7 +368,7 @@ bindsym $mod+x exec $filemanager
 bindsym $mod+e exec subl -n
 bindsym $mod+Return exec $terminal
 
-bindsym $mod+$alt+Control+Delete exec $terminal -e "htop"
+bindsym $mod+$alt+h exec $terminal -e "htop"
 bindsym $mod+shift+t focus right, exec $browser
 bindsym $mod+shift+x focus right, exec $filemanager
 bindsym $mod+shift+e focus right, exec subl -n
