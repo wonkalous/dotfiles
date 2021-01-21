@@ -57,6 +57,7 @@ for_window [class="(?i)sublime"] title_format "<tt><span foreground='$purple'>%t
 for_window [title="(?i) - Cider - "] title_format "<tt><span foreground='$purple'>%title</span></tt>"
 
 for_window [class="(?i)termina"] title_format "<span foreground='$lion'>%title</span>"
+for_window [class="(?i)kitty"] title_format "<span foreground='$lion'>%title</span>"
 
 
 for_window [title="(?i)HBO max"] title_format "<span foreground='$powder_blue'>%title</span>"
@@ -100,11 +101,11 @@ bindsym $mod+minus scratchpad show
 
 bindsym $mod+$alt+t [title="Chrome"] scratchpad show
 bindsym $mod+$alt+e [title="Sublime"] scratchpad show
-bindsym $mod+$alt+Return [class="(?i)termina"] scratchpad show
+bindsym $mod+$alt+Return [class="(?i)kitty"] scratchpad show
 
 bindsym $mod+Control+t [title="Chrome" workspace=__focused__] focus
 bindsym $mod+Control+e [title="Sublime|Cider" workspace=__focused__] focus
-bindsym $mod+Control+Return [class="(?i)termina" workspace=__focused__] focus
+bindsym $mod+Control+Return [class="(?i)kitty" workspace=__focused__] focus
 
 bindsym $mod+Control+$alt+shift+p mark --add --toggle  p
 bindsym $mod+Control+$alt+p [con_mark="p"] focus
@@ -129,6 +130,7 @@ mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
         set $interval 10
+        set $interval_small 2
         # Pressing left will shrink the window’s width.
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
@@ -143,6 +145,10 @@ mode "resize" {
         bindsym Down resize grow height $interval px or $interval ppt
         bindsym Up resize shrink height $interval px or $interval ppt
         bindsym Right resize grow width $interval px or $interval ppt
+        bindsym shift+Left resize shrink width $interval_small px or $interval_small ppt
+        bindsym shift+Down resize grow height $interval_small px or $interval_small ppt
+        bindsym shift+Up resize shrink height $interval_small px or $interval_small ppt
+        bindsym shift+Right resize grow width $interval_small px or $interval_small ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -254,7 +260,7 @@ workspace_auto_back_and_forth yes
 bindsym $mod+slash workspace back_and_forth
 
 # move current container to previous workspace and follow it
-bindsym $mod+shift+/ move container to workspace back_and_forth; workspace back_and_forth
+bindsym $mod+shift+slash move container to workspace back_and_forth; workspace back_and_forth
 
 # moving workspaces across monitors
 bindsym $mod+Shift+d move workspace to output down
@@ -311,14 +317,9 @@ bar {
     position          bottom
     mode              dock
     workspace_buttons yes
-
     font pango: Source Code Pro 12
-
     colors {
-        background #333333
-        statusline #ffd700
-
-        focused_workspace  #ffffff #285577
+        focused_workspace  #ffffff #333333
         active_workspace   #ffffff #333333
         inactive_workspace #888888 #222222
         urgent_workspace   #ffffff #900000
@@ -362,7 +363,7 @@ bindsym $mod+Control+4 exec gnome-screenshot -i
 
 set $filemanager nemo --no-desktop
 set $browser "$HOME/db_bin/ws_chrome.sh"
-set $terminal terminator
+set $terminal kitty
 
 # favorite programs
 bindsym $mod+t exec $browser
