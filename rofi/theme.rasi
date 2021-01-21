@@ -45,7 +45,7 @@
     height:   100%;
     width: 60%;
     background-color: #333333;
-    border:  120px 80px 80px 120px;
+    border:  80px 80px 80px 80px;
     text-color: @lightwhite;
 }
 
