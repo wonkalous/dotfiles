@@ -106,6 +106,7 @@ bindsym $mod+$alt+Return [class="(?i)kitty"] scratchpad show
 bindsym $mod+Control+t [title="Chrome" workspace=__focused__] focus
 bindsym $mod+Control+e [title="Sublime|Cider" workspace=__focused__] focus
 bindsym $mod+Control+Return [class="(?i)kitty" workspace=__focused__] focus
+bindsym $mod+Control+m [title="Meet - "] focus
 
 bindsym $mod+Control+$alt+shift+p mark --add --toggle  p
 bindsym $mod+Control+$alt+p [con_mark="p"] focus
@@ -319,8 +320,8 @@ bar {
     workspace_buttons yes
     font pango: Source Code Pro 12
     colors {
-        statusline #aaaaaa
-        focused_workspace  #ffffff #333333
+        statusline #8888aa
+        focused_workspace  #ffffff #555577
         active_workspace   #ffffff #333333
         inactive_workspace #888888 #222222
         urgent_workspace   #ffffff #900000
