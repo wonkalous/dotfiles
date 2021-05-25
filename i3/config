@@ -9,9 +9,17 @@ set $alt Mod1
 
 exec --no-startup-id xmodmap -e 'keycode 107 = Super_R' && xset -r 107
 
+##TODO
+# file finder
+# make scratchpad utilities open at startup, make sure to open sublime separately
+# set up alt+tab windown switcher
+# set up clock key
+# fix up terminal search and nav keymap
+# google drive integration
+
 ############ Look and Feel  ################################
 # Font for window titles. Will also be used by the bar unless a different font
-font pango: Source Code Pro 10
+font pango: Source Code Pro 8
 
 #0
 set $red #e67373
@@ -69,6 +77,7 @@ for_window [title="(?i)prime video"] title_format "<span foreground='$powder_blu
 for_window [title="(?i)gmail - "] title_format "<span foreground='$salmon'>%title</span>"
 for_window [title="(?i)google.com mail - "] title_format "<span foreground='$salmon'>%title</span>"
 
+for_window [title="(?i)meet - "] title_format "<span foreground='$pink'>%title</span>"
 
 for_window [title="(?i)Code Search - "] title_format "<span foreground='$greek_blue'>%title</span>"
 
@@ -107,6 +116,8 @@ bindsym $mod+$alt+Return [class="(?i)kitty"] scratchpad show
 bindsym $mod+Control+t [title="Chrome" workspace=__focused__] focus
 bindsym $mod+Control+e [title="Sublime|Cider" workspace=__focused__] focus
 bindsym $mod+Control+Return [class="(?i)kitty" workspace=__focused__] focus
+bindsym $mod+Control+m [title="Meet - "] focus
+bindsym $mod+Control+g [title="(?i)gmail - "] focus
 
 bindsym $mod+Control+$alt+shift+p mark --add --toggle  p
 bindsym $mod+Control+$alt+p [con_mark="p"] focus
@@ -163,7 +174,8 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
+bindsym $mod+g resize set width 75 ppt
+bindsym $mod+shift+G resize set width 50 ppt
 
 
 
@@ -330,8 +342,8 @@ bar {
     workspace_buttons yes
     font pango: Source Code Pro 12
     colors {
-        statusline #aaaaaa
-        focused_workspace  #ffffff #333333
+        statusline #8888aa
+        focused_workspace  #ffffff #555577
         active_workspace   #ffffff #333333
         inactive_workspace #888888 #222222
         urgent_workspace   #ffffff #900000
@@ -390,6 +402,7 @@ bindsym $mod+shift+e focus right, exec subl -n
 bindsym $mod+shift+Return focus right, exec $terminal
 
 bindsym $mod+c exec --no-startup-id "rofi -show calc -modi calc -no-show-match -no-sort"
+bindsym $mod+Control+c exec --no-startup-id "$HOME/.dotfiles/bin/rofi/time.sh"
 
 
 
@@ -431,10 +444,16 @@ set $monitor_options (q) eDp-1 auto (w) both (e) HDMI-1 auto
 mode "$monitor_options" {
     bindsym q exec xrandr --output eDP-1 --auto
     bindsym w exec xrandr --output HDMI-1 --auto --above eDP-1
+<<<<<<< HEAD
     bindsym e exec xrandr --output eDP-1 --off --output HDMI-1 --auto
     bindsym a exec xrandr --output eDP-1 --auto
     bindsym s exec xrandr --output HDMI-2 --auto --above eDP-1
     bindsym d exec xrandr --output eDP-1 --off --output HDMI-2 --auto
+||||||| 2fe6289
+    bindsym e exec xrandr --output eDP-1 --off --output HDMI-1 --auto
+=======
+    bindsym e exec xrandr --output eDP-1 --off --output HDMI-1 --auto --output HDMI-2 --auto
+>>>>>>> 9b56ae4b04c3b3caae83371afc476432eeee3cf5
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

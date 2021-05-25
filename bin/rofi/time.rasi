@@ -1,0 +1,66 @@
+
+configuration {
+	font:                      		"Inconsolata 26";
+    disable-history:                true;
+    fullscreen:                     false;
+	hide-scrollbar: 				true;
+	sidebar-mode: 					false;
+}
+
+* {
+  accent:           #7e57c2;
+  background:       black;
+  background-light: #272727;
+  foreground:       #bdbdbd;
+  on:               #66bb6a;
+  off:              #ef5350;
+}
+* {
+    background-color:               @background;
+    text-color:                     @foreground;
+}
+
+window {
+    //position:                       north;
+    // transparency:                   "real";
+    border-radius:                  12px;
+	width:							100%;
+}
+
+
+prompt {
+    enabled:                        true;
+    padding:                        40px;
+    background-color:               @background-light;
+    text-color:                     @accent;
+    border:                         0px 2px 0px 2px;
+    border-radius:                  10px;
+    border-color:                   @accent;
+    width: 33%;
+}
+
+dummy {
+    //expand: true;
+    width: 33%;
+}
+
+
+inputbar {
+    children:                       [ dummy, prompt, dummy ];
+    spacing:                        12px;
+    background-color:               @background;
+    text-color:                     @foreground;
+    expand:                         false;
+    border:                         0px;
+    border-radius:                  0px;
+    border-color:                   @accent;
+    margin:                         0px 0px 0px 0px;
+    padding:                        0px;
+   // position:                       center;
+}
+
+
+mainbox {
+    background-color:               @background;
+    children:                       [ inputbar ];
+}
