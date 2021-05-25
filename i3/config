@@ -8,9 +8,17 @@ set $mod Mod4
 set $alt Mod1
 
 
+##TODO
+# file finder
+# make scratchpad utilities open at startup, make sure to open sublime separately
+# set up alt+tab windown switcher
+# set up clock key
+# fix up terminal search and nav keymap
+# google drive integration
+
 ############ Look and Feel  ################################
 # Font for window titles. Will also be used by the bar unless a different font
-font pango: Source Code Pro 10
+font pango: Source Code Pro 8
 
 #0
 set $red #e67373
@@ -68,6 +76,7 @@ for_window [title="(?i)prime video"] title_format "<span foreground='$powder_blu
 for_window [title="(?i)gmail - "] title_format "<span foreground='$salmon'>%title</span>"
 for_window [title="(?i)google.com mail - "] title_format "<span foreground='$salmon'>%title</span>"
 
+for_window [title="(?i)meet - "] title_format "<span foreground='$pink'>%title</span>"
 
 for_window [title="(?i)Code Search - "] title_format "<span foreground='$greek_blue'>%title</span>"
 
@@ -107,6 +116,7 @@ bindsym $mod+Control+t [title="Chrome" workspace=__focused__] focus
 bindsym $mod+Control+e [title="Sublime|Cider" workspace=__focused__] focus
 bindsym $mod+Control+Return [class="(?i)kitty" workspace=__focused__] focus
 bindsym $mod+Control+m [title="Meet - "] focus
+bindsym $mod+Control+g [title="(?i)gmail - "] focus
 
 bindsym $mod+Control+$alt+shift+p mark --add --toggle  p
 bindsym $mod+Control+$alt+p [con_mark="p"] focus
@@ -158,7 +168,8 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
+bindsym $mod+g resize set width 75 ppt
+bindsym $mod+shift+G resize set width 50 ppt
 
 
 
@@ -380,6 +391,7 @@ bindsym $mod+shift+e focus right, exec subl -n
 bindsym $mod+shift+Return focus right, exec $terminal
 
 bindsym $mod+c exec --no-startup-id "rofi -show calc -modi calc -no-show-match -no-sort"
+bindsym $mod+Control+c exec --no-startup-id "$HOME/.dotfiles/bin/rofi/time.sh"
 
 
 
@@ -421,7 +433,7 @@ set $monitor_options (q) eDp-1 auto (w) both (e) HDMI-1 auto
 mode "$monitor_options" {
     bindsym q exec xrandr --output eDP-1 --auto
     bindsym w exec xrandr --output HDMI-1 --auto --above eDP-1
-    bindsym e exec xrandr --output eDP-1 --off --output HDMI-1 --auto
+    bindsym e exec xrandr --output eDP-1 --off --output HDMI-1 --auto --output HDMI-2 --auto
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

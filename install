@@ -6,7 +6,10 @@ BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "${BASEDIR}"
 sudo ./install_i3.sh
-sudo apt -y install zsh curl rofi i3blocks vim emacs nano terminator wget nemo bat jq kitty htop
+sudo apt -y install zsh curl rofi i3blocks vim emacs nano terminator wget nemo bat jq kitty htop pavucontrol
+sudo apt-add-repository ppa:yktooo/ppa
+sudo apt-get update
+sudo apt-get install indicator-sound-switcher
 sudo ./install_sublime.sh
 sudo ./install_clipmenu.sh
 sudo ./install_rofi-calc.sh
