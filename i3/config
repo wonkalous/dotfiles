@@ -7,6 +7,7 @@
 set $mod Mod4
 set $alt Mod1
 
+exec --no-startup-id xmodmap -e 'keycode 107 = Super_R' && xset -r 107
 
 ##TODO
 # file finder
@@ -94,7 +95,7 @@ set $white   #ffffff
 
 # class                 border   backgr.  text     indicator
 client.focused          #4c7899  #616161    $white   #2e9ef4
-client.focused_inactive #333333  #2f373a  $white   #484e50
+client.focused_inactive #333333  #1f272a  $white   #484e50
 client.unfocused        #333333  #000000  #aaaaaa  #292d2e
 client.urgent           $purple_  $red_     $gold    $gold
 
@@ -130,6 +131,11 @@ bindsym $mod+Control+$alt+i [con_mark="i"] focus
 bindsym $mod+Control+$alt+shift+u mark --add --toggle  u
 bindsym $mod+Control+$alt+u [con_mark="u"] focus
 
+exec --no-startup-id $HOME/db_bin/i3/cycle-focus.py
+bindsym $mod+Prior exec --no-startup-id $HOME/db_bin/i3/cycle-focus.py --switch
+bindsym $mod+Next exec --no-startup-id $HOME/db_bin/i3/cycle-focus.py --switchback
+bindsym $mod+Shift+Prior exec --no-startup-id $HOME/db_bin/i3/cycle-focus.py --wsswitch
+bindsym $mod+Shift+Next exec --no-startup-id $HOME/db_bin/i3/cycle-focus.py --wsswitchback
 
 # MOUSE
 # focus_follows_mouse no
@@ -227,6 +233,11 @@ bindsym $mod+u [urgent=latest] focus
 
 ############ Workspace Management  ################################
 workspace_layout stacked
+
+#default_border pixel 0
+hide_edge_borders both
+
+
 bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
 #bindsym $mod+Control+a exec i3-input -F 'workspace number "%s"' -P 'switch to number: '
@@ -341,7 +352,7 @@ bar {
 
 
 # rofi - note, can use Shift+right to cycle through modes
-bindsym $mod+space exec "rofi -combi-modi drun,window -show combi -modi combi"
+bindsym $mod+space exec "rofi -combi-modi windowcd#drun#window -show combi -modi combi -show-icons"
 
 ############ Display and Music  ################################
 
@@ -435,6 +446,9 @@ mode "$monitor_options" {
     bindsym q exec xrandr --output eDP-1 --auto
     bindsym w exec xrandr --output HDMI-1 --auto --above eDP-1
     bindsym e exec xrandr --output eDP-1 --off --output HDMI-1 --auto --output HDMI-2 --auto
+    bindsym a exec xrandr --output eDP-1 --auto
+    bindsym s exec xrandr --output HDMI-2 --auto --above eDP-1
+    bindsym d exec xrandr --output eDP-1 --off --output HDMI-2 --auto
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -444,7 +458,7 @@ bindsym $mod+Shift+M mode "$monitor_options"
 
 
 #TODO make one mode that detects current monitor
-mode "eDP-1 BRIGHTNESS" {
+mode "BRIGHTNESS eDP-1, Control for HDMI-1, Shift for HDMI-2" {
     bindsym grave exec xrandr --output eDP-1 --brightness 0.0
     bindsym 1 exec xrandr --output eDP-1 --brightness 0.1
     bindsym 2 exec xrandr --output eDP-1 --brightness 0.2
@@ -457,25 +471,32 @@ mode "eDP-1 BRIGHTNESS" {
     bindsym 9 exec xrandr --output eDP-1 --brightness 0.9
     bindsym 0 exec xrandr --output eDP-1 --brightness 1.0
 
+    bindsym Control+grave exec xrandr --output HDMI-1 --brightness 0.0
+    bindsym Control+1 exec xrandr --output HDMI-1 --brightness 0.1
+    bindsym Control+2 exec xrandr --output HDMI-1 --brightness 0.2
+    bindsym Control+3 exec xrandr --output HDMI-1 --brightness 0.3
+    bindsym Control+4 exec xrandr --output HDMI-1 --brightness 0.4
+    bindsym Control+5 exec xrandr --output HDMI-1 --brightness 0.5
+    bindsym Control+6 exec xrandr --output HDMI-1 --brightness 0.6
+    bindsym Control+7 exec xrandr --output HDMI-1 --brightness 0.7
+    bindsym Control+8 exec xrandr --output HDMI-1 --brightness 0.8
+    bindsym Control+9 exec xrandr --output HDMI-1 --brightness 0.9
+    bindsym Control+0 exec xrandr --output HDMI-1 --brightness 1.0
+
+    bindsym Shift+grave exec xrandr --output HDMI-2 --brightness 0.0
+    bindsym Shift+1 exec xrandr --output HDMI-2 --brightness 0.1
+    bindsym Shift+2 exec xrandr --output HDMI-2 --brightness 0.2
+    bindsym Shift+3 exec xrandr --output HDMI-2 --brightness 0.3
+    bindsym Shift+4 exec xrandr --output HDMI-2 --brightness 0.4
+    bindsym Shift+5 exec xrandr --output HDMI-2 --brightness 0.5
+    bindsym Shift+6 exec xrandr --output HDMI-2 --brightness 0.6
+    bindsym Shift+7 exec xrandr --output HDMI-2 --brightness 0.7
+    bindsym Shift+8 exec xrandr --output HDMI-2 --brightness 0.8
+    bindsym Shift+9 exec xrandr --output HDMI-2 --brightness 0.9
+    bindsym Shift+0 exec xrandr --output HDMI-2 --brightness 1.0
+
     bindsym Escape mode "default"
     bindsym $mod+B mode "default"
 }
-bindsym $mod+B mode "eDP-1 BRIGHTNESS"
+bindsym $mod+B mode "BRIGHTNESS eDP-1, Control for HDMI-1, Shift for HDMI-2"
 
-mode "HDMI-1 BRIGHTNESS" {
-    bindsym grave exec xrandr --output HDMI-1 --brightness 0.0
-    bindsym 1 exec xrandr --output HDMI-1 --brightness 0.1
-    bindsym 2 exec xrandr --output HDMI-1 --brightness 0.2
-    bindsym 3 exec xrandr --output HDMI-1 --brightness 0.3
-    bindsym 4 exec xrandr --output HDMI-1 --brightness 0.4
-    bindsym 5 exec xrandr --output HDMI-1 --brightness 0.5
-    bindsym 6 exec xrandr --output HDMI-1 --brightness 0.6
-    bindsym 7 exec xrandr --output HDMI-1 --brightness 0.7
-    bindsym 8 exec xrandr --output HDMI-1 --brightness 0.8
-    bindsym 9 exec xrandr --output HDMI-1 --brightness 0.9
-    bindsym 0 exec xrandr --output HDMI-1 --brightness 1.0
-
-    bindsym Escape mode "default"
-    bindsym $mod+B mode "default"
-}
-bindsym $mod+shift+B mode "HDMI-1 BRIGHTNESS"
