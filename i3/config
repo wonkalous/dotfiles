@@ -401,8 +401,8 @@ bindsym $mod+shift+x focus right, exec $filemanager
 bindsym $mod+shift+e focus right, exec subl -n
 bindsym $mod+shift+Return focus right, exec $terminal
 
-bindsym $mod+c exec --no-startup-id "rofi -show calc -modi calc -no-show-match -no-sort"
-bindsym $mod+$alt+c exec --no-startup-id "$HOME/.dotfiles/bin/rofi/time.sh"
+bindsym $mod+c exec --no-startup-id "rofi -show calc -modi calc -no-show-match -no-sort -theme-str 'window {height: 30%;}'"
+bindsym $mod+$alt+c exec --no-startup-id "$HOME/db_bin/rofi/time.sh"
 
 
 
