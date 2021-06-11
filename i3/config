@@ -12,9 +12,9 @@ set $alt Mod1
 # file finder
 # make scratchpad utilities open at startup, make sure to open sublime separately
 # set up alt+tab windown switcher
-# set up clock key
 # fix up terminal search and nav keymap
 # google drive integration
+# window placemment restore
 
 ############ Look and Feel  ################################
 # Font for window titles. Will also be used by the bar unless a different font
@@ -58,7 +58,7 @@ set $magenta #e874c1
 set $salmon #e8749b
 
 
-# https://paletton.com/#uid=32p0P0klsnubvzPgWscpzjtuPe3
+
 for_window [class="(?i)chrome"] title_format "<tt><span foreground='$chartreuse'>%title</span></tt>"
 
 for_window [class="(?i)sublime"] title_format "<tt><span foreground='$purple'>%title</span></tt>"
@@ -391,7 +391,7 @@ bindsym $mod+shift+e focus right, exec subl -n
 bindsym $mod+shift+Return focus right, exec $terminal
 
 bindsym $mod+c exec --no-startup-id "rofi -show calc -modi calc -no-show-match -no-sort"
-bindsym $mod+Control+c exec --no-startup-id "$HOME/.dotfiles/bin/rofi/time.sh"
+bindsym $mod+$alt+c exec --no-startup-id "$HOME/.dotfiles/bin/rofi/time.sh"
 
 
 
@@ -401,6 +401,7 @@ bindsym $mod+Control+c exec --no-startup-id "$HOME/.dotfiles/bin/rofi/time.sh"
 # set wallapaper
 #exec --no-startup-id feh --bg-fill ~/.dotfiles/pics/ubuntu_blue.jpg
 exec --no-startup-id ssh-agent -s
+exec --no-startup-id indicator-sound-switcher
 
 
 ## keybinds
