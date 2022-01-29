@@ -16,10 +16,11 @@ exec --no-startup-id xmodmap -e 'keycode 107 = Super_R' && xset -r 107
 # fix up terminal search and nav keymap
 # google drive integration
 # window placemment restore
+# monitor unused windows
 
 ############ Look and Feel  ################################
 # Font for window titles. Will also be used by the bar unless a different font
-font pango: Source Code Pro 8
+font pango: Source Code Pro 9
 
 #0
 set $red #e67373
@@ -141,13 +142,20 @@ bindsym $mod+Shift+Next exec --no-startup-id $HOME/db_bin/i3/cycle-focus.py --ws
 # focus_follows_mouse no
 mouse_warping none
 
+set $interval 8
+set $interval_small 2
+
+bindsym $mod+$alt+Left resize shrink width $interval px or $interval ppt
+bindsym $mod+$alt+shift+Left resize shrink width $interval_small px or $interval_small ppt
+bindsym $mod+$alt+Right resize grow width $interval px or $interval ppt
+bindsym $mod+$alt+shift+Right resize grow width $interval_small px or $interval_small ppt
+
 
 # resize window
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
-        set $interval 10
-        set $interval_small 2
+
         # Pressing left will shrink the window’s width.
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
@@ -175,7 +183,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 bindsym $mod+g resize set width 75 ppt
-bindsym $mod+shift+G resize set width 50 ppt
+bindsym $mod+shift+G resize set width 618 ppt
 
 
 
@@ -194,12 +202,21 @@ bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
+# fullscreen the parent container
+bindsym $mod+Shift+f focus parent; fullscreen; focus child
+
+### change focus:
+# bindsym $mod+Left layout stacked; mark _0; focus parent; mark _1; [con_mark="_0"] focus; focus up; mark _2; [con_mark="_1"] focus; focus child; layout tabbed; [con_mark="_2"] focus; unmark _0; unmark _1; unmark _2
+# bindsym $mod+Down layout stacked; mark _0; focus parent; mark _1; [con_mark="_0"] focus; focus right; mark _2; [con_mark="_1"] focus; focus child; layout tabbed; [con_mark="_2"] focus; unmark _0; unmark _1; unmark _2
+# bindsym $mod+Up layout stacked; mark _0; focus parent; mark _1; [con_mark="_0"] focus; focus left; mark _2; [con_mark="_1"] focus; focus child; layout tabbed; [con_mark="_2"] focus; unmark _0; unmark _1; unmark _2
+# bindsym $mod+Right layout stacked; mark _0; focus parent; mark _1; [con_mark="_0"] focus; focus down; mark _2; [con_mark="_1"] focus; focus child; layout tabbed; [con_mark="_2"] focus; unmark _0; unmark _1; unmark _2
 
 ### change focus:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
+
 # bindsym $mod+Tab exec "rofi -combi-modi Workspace:$HOME/db_bin/i3/i3_switch_workspace.sh -show combi -modi combi"
 
 ### move focused window
@@ -207,6 +224,12 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
+# ### move focused window
+#bindsym $mod+Shift+Left layout stacked; mark _0; focus parent; mark _1; [con_mark="_0"] focus; move up; [con_mark="_1"] focus; focus child; layout tabbed; [con_mark="_0"] focus; unmark _0; unmark _1
+#bindsym $mod+Shift+Down layout stacked; mark _0; focus parent; mark _1; [con_mark="_0"] focus; move right; [con_mark="_1"] focus; focus child; layout tabbed; [con_mark="_0"] focus; unmark _0; unmark _1
+#bindsym $mod+Shift+Up layout stacked; mark _0; focus parent; mark _1; [con_mark="_0"] focus; move left; [con_mark="_1"] focus; focus child; layout tabbed; [con_mark="_0"] focus; unmark _0; unmark _1
+#bindsym $mod+Shift+Right layout stacked; mark _0; focus parent; mark _1; [con_mark="_0"] focus; move down; [con_mark="_1"] focus; focus child; layout tabbed; [con_mark="_0"] focus; unmark _0; unmark _1
 
 ### change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -224,9 +247,6 @@ bindsym $mod+a focus parent
 
 # focus the child container
 bindsym $mod+Shift+a focus child
-
-# fullscreen the parent container
-bindsym $mod+Shift+f focus parent; fullscreen; focus child
 
 # jump to urgent window
 bindsym $mod+u [urgent=latest] focus
@@ -296,9 +316,11 @@ bindsym $mod+Shift+s exec "~/.dotfiles/i3/scripts/i3-move"
 #bindsym $mod+Shift+z workspace prev_on_output
 #bindsym $mod+Shift+x workspace next_on_output
 
-bindsym $mod+Shift+Control+Left workspace prev_on_output
-bindsym $mod+Shift+Control+Right workspace next_on_output
+bindsym $mod+Control+Left workspace prev_on_output
+bindsym $mod+Control+Right workspace next_on_output
 
+## should be:  TODO(make script)
+# i3-msg "[instance=\"google-chrome \(/home/epenn/temp/c1\)\"] move --no-auto-back-and-forth container to workspace number 15"
 bindsym $mod+Control+a [instance="google-chrome \($HOME/temp/c1\)"] move container to workspace number 15; [instance="google-chrome \($HOME/temp/c2\)"] move container to workspace number 25; [instance="google-chrome \($HOME/temp/c3\)"] move container to workspace number 35; [instance="google-chrome \($HOME/temp/c4\)"] move container to workspace number 45; [instance="google-chrome \($HOME/temp/c5\)"] move container to workspace number 55; [instance="google-chrome \($HOME/temp/c6\)"] move container to workspace number 65; [instance="google-chrome \($HOME/temp/c7\)"] move container to workspace number 75; [instance="google-chrome \($HOME/temp/c8\)"] move container to workspace number 85; [instance="google-chrome \($HOME/temp/c9\)"] move container to workspace number 95; [instance="google-chrome \($HOME/temp/c0\)"] move container to workspace number 05; 
 
 
@@ -343,7 +365,7 @@ bar {
     font pango: Source Code Pro 12
     colors {
         statusline #8888aa
-        focused_workspace  #ffffff #555577
+        focused_workspace  #ffffff #206000
         active_workspace   #ffffff #333333
         inactive_workspace #888888 #222222
         urgent_workspace   #ffffff #900000
@@ -441,14 +463,17 @@ bindsym $mod+Control+v exec clipmenu && xdotool key Ctrl+v
 bindsym $mod+Control+$alt+v exec clipmenu || xdotool key Down Return Ctrl+v
 
 ### monitor menu
-set $monitor_options (q) eDp-1 auto (w) both (e) HDMI-1 auto
+set $monitor_options (q) eDp-1 auto (w) both (e) HDMI-1 auto (r) 4k HDMI-1; next row for HDMI-2
 mode "$monitor_options" {
     bindsym q exec xrandr --output eDP-1 --auto
     bindsym w exec xrandr --output HDMI-1 --auto --above eDP-1
     bindsym e exec xrandr --output eDP-1 --off --output HDMI-1 --auto --output HDMI-2 --auto
+    bindsym r exec xrandr --output HDMI-1 --mode 3840x2160 --output eDP-1 --off
+    
     bindsym a exec xrandr --output eDP-1 --auto
     bindsym s exec xrandr --output HDMI-2 --auto --above eDP-1
     bindsym d exec xrandr --output eDP-1 --off --output HDMI-2 --auto
+    bindsym f exec xrandr --output HDMI-2 --mode 3840x2160 --output eDP-1 --off
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
