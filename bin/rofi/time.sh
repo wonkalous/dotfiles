@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-style="$HOME/.dotfiles/bin/rofi/time.rasi"
+style="$HOME/db_bin/rofi/time.rasi"
 rofi_command="rofi -theme $style"
 
 ## Get time and date

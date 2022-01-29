@@ -43,10 +43,11 @@
 }
 #window {
     height:   100%;
-    width: 60%;
+    width: 33%;
     background-color: #333333;
-    border:  80px 80px 80px 80px;
+    border:  10px 10px 10px 10px;
     text-color: @lightwhite;
+    location: west;
 }
 
 #mode-switcher {
